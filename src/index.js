@@ -1,8 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import MovieList from "./App.jsx";
+import movies from "./data/movies";
 
-const Index = () => {
-  return <div>Hello React!</div>;
-};
-
-ReactDOM.render(<Index />, document.getElementById("index"));
+ReactDOM.render(<MovieList movies={movies}/>, document.getElementById("app"));
