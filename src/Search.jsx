@@ -4,8 +4,8 @@ import Movie from "./Movie.jsx";
 
 const Search = (props) => (
   <div>
-    <input onChange={props.handleClick} type='text'></input>
-    <button onClick={props.handleClick}>Search</button>
+    <input onChange={props.handleClick} type='text' placeholder='Search...'></input>
+    <button>Search</button>
   </div>
 )
 

@@ -2,15 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom";
 import MovieList from "./MovieList.jsx";
 import Search from "./Search.jsx";
+import AddMovie from "./AddMovie.jsx";
 import movies from "./data/movies";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { movies: movies };
+    this.state = {  movies: movies,
+                    addmovie: ''  };
 
     this.Search = this.Search.bind(this);
+    this.addName = this.addName.bind(this);
+    this.addMovie = this.addMovie.bind(this);
     //maybe move this
 
   }
@@ -28,11 +32,25 @@ class App extends React.Component {
     // }
   }
 
+  addName(e) {
+    let name = e.target.value;
+    let movie = {title: name};
+    this.setState( {addmovie: movie} );
+  }
+
+  addMovie() {
+    let movie = this.state.addmovie;
+    let state = this.state.movies;
+    state.unshift(movie);
+    this.setState( {movies: state} );
+  }
+
   render() {
     return (
         <div>
           <h1>MovieList</h1>
-          <Search handleClick={this.Search}/>
+          <Search handleClick={this.Search} />
+          <AddMovie name={this.addName} add={this.addMovie} />
           <MovieList movies={this.state.movies} />
         </div>
     );
