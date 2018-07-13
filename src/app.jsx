@@ -15,12 +15,9 @@ class App extends React.Component {
     this.Search = this.Search.bind(this);
     this.addName = this.addName.bind(this);
     this.addMovie = this.addMovie.bind(this);
-    //maybe move this
-
   }
 
   Search(e) {
-    // function handleClick(e) {
     let term = e.target.value.toLowerCase();
     let results = [];
     for (var i = 0; i < movies.length; i++) {
@@ -29,12 +26,11 @@ class App extends React.Component {
       }
     }
     this.setState( {movies: results} );
-    // }
   }
 
   addName(e) {
     let name = e.target.value;
-    let movie = {title: name};
+    let movie = {title: name, watched: false};
     this.setState( {addmovie: movie} );
   }
 
@@ -45,13 +41,15 @@ class App extends React.Component {
     this.setState( {movies: state} );
   }
 
+
+
   render() {
     return (
         <div>
           <h1>MovieList</h1>
           <Search handleClick={this.Search} />
           <AddMovie name={this.addName} add={this.addMovie} />
-          <MovieList movies={this.state.movies} />
+          <MovieList find={this.findMovie} movies={this.state.movies} />
         </div>
     );
   }
